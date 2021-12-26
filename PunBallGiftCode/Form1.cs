@@ -38,6 +38,7 @@ namespace PunBallGiftCode
                     var responesData = await JsonSerializer.DeserializeAsync<ResponesData>(stream);
                     pictureBox1.ImageLocation = $"https://mail-punball2.habby.com/api/v1/captcha/image/{responesData.data.captchaId}";
                     TempCaptcha = responesData.data.captchaId;
+                    textBox3.ResetText();
                 }
                 else
                 {
@@ -92,10 +93,12 @@ namespace PunBallGiftCode
                     if (string.IsNullOrWhiteSpace(responesData.message) == false)
                     {
                         MessageBox.Show(responesData.message);
-                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Redeem Success!");
                     }
                     await GetVaildCodeImage();
-                    MessageBox.Show("Redeem Success!");
                 }
                 else
                 {
